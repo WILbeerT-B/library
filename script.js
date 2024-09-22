@@ -37,19 +37,26 @@ function addBookToLibrary() {
   let isRead = prompt('Have you read the book?');
   let input = new Book(title, author, pages, isRead)
   myLibrary.push(input);
+  displayBook();
   return myLibrary;
 }
 
 function displayBook() {
-  const output = document.querySelector('.output');
-  output.textContent = "";
-
-  for (let i=0; i<myLibrary.length; i++) {  
-    const para = document.createElement("p");
-    para.textContent = myLibrary[i].title +" by "+ myLibrary[i].author + ", " + myLibrary[i].pages + " pages, " + myLibrary[i].read;
-    output.appendChild(para);
+  for (let i=0; i<myLibrary.length; i++) {
+    const output = document.querySelector('.output');
+    output.textContent = "";
+    for (let j=0; j<4; j++) {
+      
+      const para = document.createElement("p");
+      para.textContent = myLibrary[j].title +" by "+ myLibrary[j].author + ", " + myLibrary[j].pages + " pages, " + myLibrary[j].read;
+      output.appendChild(para);
+    }
   }    
 }
 
-addBookToLibrary();
+const addBtn = document.querySelector('#btn');
+addBtn.addEventListener("click", addBookToLibrary);
+
+//displayBook();
+//addBookToLibrary();
 displayBook();
