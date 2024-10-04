@@ -30,74 +30,42 @@ function Book(title, author, pages, status) {
   }
 }
 
+function newBook() {
+  const showBtn = document.getElementById("new-book");
+  const dialog = document.getElementById("dialog");
+  const jsCloseBtn = dialog.querySelector("#js-close");
+  
+  showBtn.addEventListener("click", () => {
+    dialog.showModal();
+  });
+
+  jsCloseBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    dialog.close();
+    addBookToLibrary();
+  });
+}
+
 function addBookToLibrary() {
 
-  // Create form
-  const form = document.createElement('form');
-
-  // Create form inputs
-  let inputTitle = document.createElement('input');
-  inputTitle.type = 'text';
-  inputTitle.name = 'title';
-  inputTitle.id = 'title';
-  inputTitle.placeholder = 'Title';
-
-  let inputAuthor = document.createElement('input');
-  inputAuthor.type = 'text';
-  inputAuthor.name = 'author';
-  inputAuthor.id = 'author';
-  inputAuthor.placeholder = 'Author';
-
-  let inputPages = document.createElement('input');
-  inputPages.type = 'text';
-  inputPages.name = 'pages';
-  inputPages.id = 'pages';
-  inputPages.placeholder = 'Pages';
-
-  let inputStatus = document.createElement('input');
-  inputStatus.type = 'text';
-  inputStatus.name = 'status';
-  inputStatus.id = 'status';
-  inputStatus.placeholder = 'Status';
-
-  // Create submit button
-  const buttonSubmit = document.createElement('button');
-  buttonSubmit.type = 'submit';
-  // buttonSubmit.value = 'Submit';
-  buttonSubmit.textContent = 'Submit';
-
-  // Add elements to form
-  form.appendChild(inputTitle);
-  form.appendChild(inputAuthor);
-  form.appendChild(inputPages);
-  form.appendChild(inputStatus);
-  form.appendChild(buttonSubmit);
-
-  document.body.appendChild(form);
-
-  buttonSubmit.addEventListener('click', (event) => {
-    event.preventDefault();
-
-    const title = document.querySelector('#title');
-    const author = document.querySelector('#author');
-    const pages = document.querySelector('#pages');
-    const status = document.querySelector('#status');
-
-    const myTitle = title.value;
-    title.value = '';
-    const myAuthor = author.value;
-    author.value = '';
-    const myPages = pages.value;
-    pages.value = '';
-    const myStatus = status.value;
-    status.value = '';
-    
-    let input = new Book(myTitle, myAuthor, myPages, myStatus);
-    myLibrary.push(input);
-    displayBook();
-    return myLibrary;
-  });
+  const inputTitle = document.getElementById('title');
+  const inputAuthor = document.getElementById('author');
+  const inputPages = document.getElementById('pages');
+  const inputStatus = document.getElementById('status');
   
+  const title = inputTitle.value;
+  inputTitle.value = '';
+  const author = inputAuthor.value;
+  inputAuthor.value = '';
+  const pages = inputPages.value;
+  inputPages.value = '';
+  const status = inputStatus.value;
+  inputStatus.value = '';
+    
+  let input = new Book(title, author, pages, status);
+  myLibrary.push(input);
+  displayBook();
+  return myLibrary;
 }
 
 function displayBook() {
@@ -110,9 +78,5 @@ function displayBook() {
   }    
 }
 
-const addBtn = document.querySelector('#btn');
-addBtn.addEventListener("click", addBookToLibrary);
-
-//displayBook();
-//addBookToLibrary();
 displayBook();
+newBook();

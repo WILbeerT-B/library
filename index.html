@@ -13,6 +13,33 @@
   <div class="output">
     
   </div>
-  <button id="btn">NEW BOOK</button>
+  <button id="new-book">NEW BOOK</button>
+  <dialog id="dialog">
+    <form method="dialog">
+      
+      <label for="title"></label>
+      <input type="text" name="title" id="title" placeholder="Title" required/>
+      
+      <label for="author"></label>
+      <input type="text" name="author" id="author" placeholder="Author" required />
+
+      <label for="pages"></label>
+      <input type="number" name="pages" id="pages" placeholder="Number of pages" required />
+
+      <label for="status"></label>
+      <input type="text" name="status" id="status" placeholder="Status" required />
+    
+      <div>
+        <!-- <input type="submit" id="normal-close" value="Normal close" /> -->
+        <input
+          type="submit"
+          id="novalidate-close"
+          value="Cancel"
+          formnovalidate />
+        <input type="submit" id="js-close" value="Confirm" />
+      </div>
+    </form>
+  </dialog>
+  
 </body>
 </html>
