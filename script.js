@@ -1,4 +1,4 @@
-const myLibrary = 
+let myLibrary = 
 [
   {
     title: 'The Fellowship of the Ring', 
@@ -30,7 +30,7 @@ function Book(title, author, pages, status) {
   }
 }
 
-function newBook() {
+function showForm() {
   const showBtn = document.getElementById("new-book");
   const dialog = document.getElementById("dialog");
   const jsCloseBtn = dialog.querySelector("#js-close");
@@ -72,11 +72,24 @@ function displayBook() {
   const output = document.querySelector('.output');
   output.textContent = "";
   for (let i=0; i<myLibrary.length; i++) {
+    const index = myLibrary.indexOf(myLibrary[i]);
     const para = document.createElement("p");
-    para.textContent = myLibrary[i].title +" by "+ myLibrary[i].author + ", " + myLibrary[i].pages + " pages, " + myLibrary[i].status;
+    const deleteBtn = document.createElement('button');
+    
+    
+    para.textContent = myLibrary[i].title +" by "+ myLibrary[i].author + ", " + myLibrary[i].pages + " pages, " + myLibrary[i].status + " ";
+    deleteBtn.textContent = 'Delete';
+
+    para.appendChild(deleteBtn);
     output.appendChild(para);
-  }    
+
+    deleteBtn.addEventListener('click', () => {
+      output.removeChild(para);
+      myLibrary.splice(index, 1);
+    });
+  }
+  // return myLibrary;
 }
 
 displayBook();
-newBook();
+showForm();
