@@ -4,19 +4,19 @@ let myLibrary =
     title: 'The Fellowship of the Ring', 
     author: 'J.R.R. Tolkien', 
     pages: 295, 
-    status: 'read'
+    status: 'Read'
   },
   {
     title: 'The Two Towers', 
     author: 'J.R.R.', 
     pages: 195, 
-    status: 'not read'
+    status: 'Not read'
   },
   {
     title: 'The Return of the King', 
     author: 'Tolkien', 
     pages: 214, 
-    status: 'not read'
+    status: 'Not read'
   }
 ];
 
@@ -73,19 +73,33 @@ function displayBook() {
   output.textContent = "";
   for (let i=0; i<myLibrary.length; i++) {
     const index = myLibrary.indexOf(myLibrary[i]);
-    const para = document.createElement("p");
+    const para = document.createElement("div");
+    const statusBtn = document.createElement('button');
     const deleteBtn = document.createElement('button');
     
     
-    para.textContent = myLibrary[i].title +" by "+ myLibrary[i].author + ", " + myLibrary[i].pages + " pages, " + myLibrary[i].status + " ";
+    para.textContent = myLibrary[i].title +" by "+ myLibrary[i].author + ", " + myLibrary[i].pages + " pages, ";
     deleteBtn.textContent = 'Delete';
+    statusBtn.textContent = myLibrary[i].status;
 
+    para.appendChild(statusBtn);
     para.appendChild(deleteBtn);
     output.appendChild(para);
 
     deleteBtn.addEventListener('click', () => {
       output.removeChild(para);
       myLibrary.splice(index, 1);
+    });
+
+    statusBtn.addEventListener('click', () => {
+      if (myLibrary[i].status == 'Read') {
+        myLibrary[i].status = 'Not read'
+        statusBtn.textContent = myLibrary[i].status;
+      } else {
+        myLibrary[i].status = 'Read'
+        statusBtn.textContent = myLibrary[i].status
+      }
+        
     });
   }
   // return myLibrary;
