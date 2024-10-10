@@ -4,42 +4,67 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Project Library</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
+  
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
 <body>
-  <h1>My Library</h1>
   
-  <div class="output">
+  <div class="library-container">
+    <div class="library-header">
+      <h1>Lukas Caleb's Book Library</h1>
+    </div>
     
+    <div class="books-container">
+      
+    </div>
+    <button id="new-book">Add New Book</button>
+
+    <div class="dialog-container">
+      <dialog id="dialog">
+        <form id="add-book" method="dialog">
+          
+          <div class="input">
+            <label for="title"></label>
+            <input type="text" name="title" id="title" placeholder="Title" required/>
+          </div>
+          <div class="input">
+            <label for="author"></label>
+            <input type="text" name="author" id="author" placeholder="Author" required />
+          </div>
+          <div class="input">
+            <label for="pages"></label>
+            <input type="number" name="pages" id="pages" placeholder="Number of pages" required />
+          </div>
+          <div class="input">
+            <label for="status">Status:</label>
+            <select name="status" id="status">
+              <option value="Read">Read</option>
+              <option value="Not Read">Not Read</option>
+            </select>
+            <!-- <input type="text" name="status" id="status" placeholder="Status" required /> -->
+          </div>
+          <div>
+            <!-- <input type="submit" id="normal-close" value="Normal close" /> -->
+            <input
+              type="submit"
+              id="novalidate-close"
+              value="Cancel"
+              formnovalidate />
+            <input type="submit" id="js-close" value="Confirm" />
+          </div>
+        </form>
+      </dialog>
+    </div>
+    
+
   </div>
-  <button id="new-book">NEW BOOK</button>
-  <dialog id="dialog">
-    <form method="dialog">
-      
-      <label for="title"></label>
-      <input type="text" name="title" id="title" placeholder="Title" required/>
-      
-      <label for="author"></label>
-      <input type="text" name="author" id="author" placeholder="Author" required />
-
-      <label for="pages"></label>
-      <input type="number" name="pages" id="pages" placeholder="Number of pages" required />
-
-      <label for="status"></label>
-      <input type="text" name="status" id="status" placeholder="Status" required />
-    
-      <div>
-        <!-- <input type="submit" id="normal-close" value="Normal close" /> -->
-        <input
-          type="submit"
-          id="novalidate-close"
-          value="Cancel"
-          formnovalidate />
-        <input type="submit" id="js-close" value="Confirm" />
-      </div>
-    </form>
-  </dialog>
+  
+  
   
 </body>
 </html>
