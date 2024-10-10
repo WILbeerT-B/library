@@ -1,21 +1,21 @@
 let myLibrary = 
 [
   {
-    title: 'The Fellowship of the Ring', 
-    author: 'J.R.R. Tolkien', 
-    pages: 295, 
+    title: 'You are an Amazing Boy', 
+    author: 'Nadia Ross', 
+    pages: 110, 
     status: 'Read'
   },
   {
-    title: 'The Two Towers', 
-    author: 'J.R.R.', 
-    pages: 195, 
-    status: 'Not read'
+    title: 'How to Catch a Star', 
+    author: 'Oliver Jeffers', 
+    pages: 205, 
+    status: 'Read'
   },
   {
-    title: 'The Return of the King', 
-    author: 'Tolkien', 
-    pages: 214, 
+    title: 'Inspiring Stories for Kids', 
+    author: 'Lily Nicolai', 
+    pages: 187, 
     status: 'Not read'
   }
 ];
@@ -69,25 +69,39 @@ function addBookToLibrary() {
 }
 
 function displayBook() {
-  const output = document.querySelector('.output');
-  output.textContent = "";
+  const bookDiv = document.querySelector('.books-container');
+  bookDiv.textContent = "";
   for (let i=0; i<myLibrary.length; i++) {
     const index = myLibrary.indexOf(myLibrary[i]);
-    const para = document.createElement("div");
+    const bookCard = document.createElement('div');
+    bookCard.classList.add('card');
+    const title = document.createElement('h3');
+    title.classList.add('title');
+    const author = document.createElement('h4');
+    author.classList.add('author');
+    const pages = document.createElement('p');
+    pages.classList.add('pages');
     const statusBtn = document.createElement('button');
+    statusBtn.classList.add('status');
     const deleteBtn = document.createElement('button');
-    
-    
-    para.textContent = myLibrary[i].title +" by "+ myLibrary[i].author + ", " + myLibrary[i].pages + " pages, ";
-    deleteBtn.textContent = 'Delete';
+    deleteBtn.classList.add('delete');
+
+    title.textContent = myLibrary[i].title;
+    author.textContent = `by ${myLibrary[i].author}`;
+    pages.textContent = `${myLibrary[i].pages} pages`;
+    // card.textContent = title + " " +;
+    deleteBtn.textContent = 'Delete this book';
     statusBtn.textContent = myLibrary[i].status;
 
-    para.appendChild(statusBtn);
-    para.appendChild(deleteBtn);
-    output.appendChild(para);
+    bookCard.append(statusBtn, title, author, pages, deleteBtn);
+    /* card.appendChild(author);
+    card.appendChild(pages);
+    card.appendChild(statusBtn);
+    card.appendChild(deleteBtn); */
+    bookDiv.appendChild(bookCard);
 
     deleteBtn.addEventListener('click', () => {
-      output.removeChild(para);
+      bookDiv.removeChild(bookCard);
       myLibrary.splice(index, 1);
     });
 
