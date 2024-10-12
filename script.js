@@ -65,14 +65,16 @@ function addBookToLibrary() {
   let input = new Book(title, author, pages, status);
   myLibrary.push(input);
   displayBook();
+  console.log(`Added "${input.title}"`);
   return myLibrary;
 }
 
 function displayBook() {
   const bookDiv = document.querySelector('.books-container');
   bookDiv.textContent = "";
-  for (let i=0; i<myLibrary.length; i++) {
-    const index = myLibrary.indexOf(myLibrary[i]);
+
+  for (const book of myLibrary) {
+    const index = myLibrary.indexOf(book);
     const bookCard = document.createElement('div');
     bookCard.classList.add('card');
     const title = document.createElement('h3');
@@ -86,35 +88,33 @@ function displayBook() {
     const deleteBtn = document.createElement('button');
     deleteBtn.classList.add('delete');
 
-    title.textContent = myLibrary[i].title;
-    author.textContent = `by ${myLibrary[i].author}`;
-    pages.textContent = `${myLibrary[i].pages} pages`;
-    // card.textContent = title + " " +;
-    deleteBtn.textContent = 'Delete this book';
-    statusBtn.textContent = myLibrary[i].status;
+    title.textContent = book.title;
+    author.textContent = `by ${book.author}`;
+    pages.textContent = `${book.pages} pages`;
 
-    bookCard.append(statusBtn, title, author, pages, deleteBtn);
-    /* card.appendChild(author);
-    card.appendChild(pages);
-    card.appendChild(statusBtn);
-    card.appendChild(deleteBtn); */
+    deleteBtn.textContent = 'Delete this book';
+    statusBtn.textContent = book.status;
+
+    bookCard.append(statusBtn, title, author, pages, deleteBtn);    
     bookDiv.appendChild(bookCard);
 
     deleteBtn.addEventListener('click', () => {
       bookDiv.removeChild(bookCard);
       myLibrary.splice(index, 1);
+      console.log(`Deleted "${book.title}"`);
     });
 
     statusBtn.addEventListener('click', () => {
-      if (myLibrary[i].status == 'Read') {
-        myLibrary[i].status = 'Not read'
-        statusBtn.textContent = myLibrary[i].status;
+      if (book.status == 'Read') {
+        book.status = 'Not read'
+        statusBtn.textContent = book.status;
+        console.log(`Changed status of "${book.title}" to "${book.status}"`);
       } else {
-        myLibrary[i].status = 'Read'
-        statusBtn.textContent = myLibrary[i].status
-      }
-        
-    });
+        book.status = 'Read'
+        statusBtn.textContent = book.status
+        console.log(`Changed status of "${book.title}" to "${book.status}"`);
+      } 
+    });  
   }
   // return myLibrary;
 }
