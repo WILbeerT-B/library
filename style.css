@@ -1,46 +1,8 @@
-/* modern css reset */
-*,
-*::before,
-*::after {
-   box-sizing: border-box;
-}
-
 * {
    margin: 0;
+   padding: 0;
+   box-sizing: border-box;
 }
-
-body {
-   line-height: 1.5;
-   -webkit-font-smoothing: antialiased;
-}
-
-img,
-picture,
-video,
-canvas,
-svg {
-   display: block;
-   max-width: 100%;
-}
-
-input,
-button,
-textarea,
-select {
-   font: inherit;
-}
-
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-   overflow-wrap: break-word;
-}
-
-/* my styles */
 
 body {
    display: grid;
@@ -54,11 +16,21 @@ body {
 }
 
 .header {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
    background-color: #828a92;
    color: #2b2d42;
    padding: 20px;
    /* border-bottom: 1px solid #aa875f; */
    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#headerText {
+   align-content: center;
+}
+
+#headerAddBtn {
+   align-self: right;
 }
 
 #add-book-button {

@@ -18,7 +18,13 @@
 
    
    <div class="header">
-      <h1>Lukas Caleb's Book Library</h1>
+      <div id="headerText">
+         <h1>My Book Library</h1>
+      </div>
+      <div id="headerAddBtn">
+         <button id="add-book-button">+ Add Book</button>
+      </div>
+      
    </div>
 
    <div class="dialog-container">
@@ -39,14 +45,16 @@
                   <option value="Not Read">Not Read</option>
                </select>
             </div>
-               <input type="submit" id="cancel-button" value="Cancel" formnovalidate />
-               <input type="submit" id="submit-button" value="Confirm" />
+            <div class="actions">
+               <button type="submit" id="submit-button" form="input-form">Confirm</butoon>
+               <button type="button" id="cancel-button">Cancel</button>
+            </div>
+               
+               
          </form>
       </dialog>
    </div>
    <div class="main-container">
-      
-      <button id="add-book-button">+ Add Book</button>
       
       <div class="books-container">
 

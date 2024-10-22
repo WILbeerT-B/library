@@ -27,39 +27,6 @@ function Book(title, author, pages, status) {
    this.status = status;
 }
 
-function showForm() {
-   const showFormBtn = document.getElementById("add-book-button");
-   const dialog = document.getElementById("dialog");
-   const confirm = dialog.querySelector("#submit-button");
-
-   showFormBtn.addEventListener("click", () => {
-      dialog.showModal();
-   });
-
-   confirm.addEventListener("click", (e) => {
-      e.preventDefault();
-
-      const inputTitle = document.getElementById('title');
-      const inputAuthor = document.getElementById('author');
-      const inputPages = document.getElementById('pages');
-      const inputStatus = document.getElementById('status');
-
-      const title = inputTitle.value;
-      inputTitle.value = '';
-      const author = inputAuthor.value;
-      inputAuthor.value = '';
-      const pages = inputPages.value;
-      inputPages.value = '';
-      const status = inputStatus.value;
-      inputStatus.value = '';
-      
-      addBookToLibrary(title, author, pages, status);
-      displayBooks();
-
-      dialog.close();
-   });
-}
-
 function addBookToLibrary(title, author, pages, status) {
    let newBook = new Book(title, author, pages, status);
    myLibrary.push(newBook);
@@ -113,7 +80,6 @@ function displayBooks() {
       
       booksDiv.appendChild(statusAndDeleteDiv);
 
-      // bookCard.append(title, author, pages, statusBtn, deleteBtn);
       booksContainer.appendChild(booksDiv);
 
       deleteBtn.addEventListener('click', () => {
@@ -141,6 +107,40 @@ function removeBook(index) {
    displayBooks();
 }
 
+const addBookBtn = document.getElementById('add-book-button');
+const dialog = document.getElementById('dialog');
+const inputForm = document.getElementById('input-form');
+const cancelBtn = document.getElementById('cancel-button');
 
-showForm();
+addBookBtn.addEventListener("click", () => {
+   dialog.showModal();
+});
+
+cancelBtn.addEventListener('click', () => {
+   dialog.close();
+})
+
+inputForm.addEventListener("submit", (e) => {
+   e.preventDefault();
+
+   const inputTitle = document.getElementById('title');
+   const inputAuthor = document.getElementById('author');
+   const inputPages = document.getElementById('pages');
+   const inputStatus = document.getElementById('status');
+
+   const title = inputTitle.value;
+   inputTitle.value = '';
+   const author = inputAuthor.value;
+   inputAuthor.value = '';
+   const pages = inputPages.value;
+   inputPages.value = '';
+   const status = inputStatus.value;
+   inputStatus.value = '';
+   
+   addBookToLibrary(title, author, pages, status);
+   displayBooks();
+   inputForm.reset();
+   dialog.close();
+});
+
 displayBooks();
