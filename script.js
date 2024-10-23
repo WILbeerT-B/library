@@ -44,7 +44,7 @@ function displayBooks() {
 
       // for title
       let titleDiv = document.createElement('h2');
-      titleDiv.className = 'title';
+      titleDiv.classList.add('title');
       titleDiv.textContent = book.title;
       booksDiv.appendChild(titleDiv);
       
@@ -53,12 +53,12 @@ function displayBooks() {
       authorAndPagesDiv.className = "author-and-pages";
 
       let authorDiv = document.createElement('div');
-      authorDiv.className = 'author';
+      authorDiv.classList.add('author');
       authorDiv.textContent = ` by ${book.author}`;
       authorAndPagesDiv.appendChild(authorDiv);
       
       let pagesDiv = document.createElement('div');
-      pagesDiv.className = 'pages';
+      pagesDiv.classList.add('pages');
       pagesDiv.textContent = `${book.pages} pages`;
       authorAndPagesDiv.appendChild(pagesDiv);
       
@@ -69,12 +69,12 @@ function displayBooks() {
       statusAndDeleteDiv.className = 'status-and-delete';
 
       let statusBtn = document.createElement('button');
-      statusBtn.className = 'status';
+      statusBtn.classList.add('status');
       statusBtn.textContent = book.status;
       statusAndDeleteDiv.appendChild(statusBtn);
 
       let deleteBtn = document.createElement('button');
-      deleteBtn.className = 'delete';
+      deleteBtn.classList.add('delete');
       deleteBtn.textContent = 'Delete';
       statusAndDeleteDiv.appendChild(deleteBtn);
       
@@ -107,10 +107,10 @@ function removeBook(index) {
    displayBooks();
 }
 
-const addBookBtn = document.getElementById('add-book-button');
-const dialog = document.getElementById('dialog');
-const inputForm = document.getElementById('input-form');
-const cancelBtn = document.getElementById('cancel-button');
+const addBookBtn = document.getElementById('addBookBtn');
+const dialog = document.getElementById('dialogModal');
+const inputForm = document.getElementById('inputForm');
+const cancelBtn = document.getElementById('cancelBtn');
 
 addBookBtn.addEventListener("click", () => {
    dialog.showModal();

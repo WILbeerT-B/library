@@ -22,35 +22,35 @@
          <h1>My Book Library</h1>
       </div>
       <div id="headerAddBtn">
-         <button id="add-book-button">+ Add Book</button>
+         <button id="addBookBtn">+ Add Book</button>
       </div>
       
    </div>
 
    <div class="dialog-container">
-      <dialog id="dialog">
-         <form id="input-form" method="dialog">
-            <div class="input">
+      <dialog id="dialogModal">
+         <form id="inputForm" method="dialog">
+            <div class="input-row">
                <input type="text" name="title" id="title" placeholder="Title" required />
             </div>
-            <div class="input">
+            <div class="input-row">
                <input type="text" name="author" id="author" placeholder="Author" required />
             </div>
-            <div class="input">
+            <div class="input-row">
                <input type="number" name="pages" id="pages" placeholder="Number of pages" required />
             </div>
-            <div class="select">
+            <div class="input-row">
                <select name="status" id="status">
                   <option value="Read">Read</option>
                   <option value="Not Read">Not Read</option>
                </select>
             </div>
             <div class="actions">
-               <button type="submit" id="submit-button" form="input-form">Confirm</butoon>
-               <button type="button" id="cancel-button">Cancel</button>
+               <button type="button" id="cancelBtn">Cancel</button>
+               <button type="submit" id="submitBtn" form="inputForm">Confirm</butoon>
             </div>
                
-               
+      
          </form>
       </dialog>
    </div>
