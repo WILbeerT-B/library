@@ -4,31 +4,31 @@ let myLibrary =
          title: 'You are an Amazing Boy',
          author: 'Nadia Ross',
          pages: 110,
-         status: 'Read'
+         read: true
       },
       {
          title: 'How to Catch a Star',
          author: 'Oliver Jeffers',
          pages: 205,
-         status: 'Read'
+         read: false
       },
       {
          title: 'Inspiring Stories for Kids',
          author: 'Lily Nicolai',
          pages: 187,
-         status: 'Not read'
+         read: true
       }
    ];
 
-function Book(title, author, pages, status) {
+function Book(title, author, pages, read) {
    this.title = title;
    this.author = author;
    this.pages = pages;
-   this.status = status;
+   this.read = read;
 }
 
-function addBookToLibrary(title, author, pages, status) {
-   let newBook = new Book(title, author, pages, status);
+function addBookToLibrary(title, author, pages, read) {
+   let newBook = new Book(title, author, pages, read);
    myLibrary.push(newBook);
    displayBooks();
    console.log(`Added "${newBook.title}"`);
@@ -41,6 +41,22 @@ function displayBooks() {
    myLibrary.forEach((book, index) => {
       let booksDiv = document.createElement('div');
       booksDiv.className = 'books';
+
+      // for status and delete
+      let statusAndDeleteDiv = document.createElement('div');
+      statusAndDeleteDiv.className = 'status-and-delete';
+
+      let readStatus = document.createElement('button');
+      readStatus.classList.add('read');
+      readStatus.textContent = book.read ? 'Read' : 'Unread';
+      statusAndDeleteDiv.appendChild(readStatus);
+
+      let deleteBtn = document.createElement('button');
+      deleteBtn.classList.add('delete');
+      deleteBtn.textContent = 'X';
+      statusAndDeleteDiv.appendChild(deleteBtn);
+      
+      booksDiv.appendChild(statusAndDeleteDiv);
 
       // for title
       let titleDiv = document.createElement('h2');
@@ -63,47 +79,25 @@ function displayBooks() {
       authorAndPagesDiv.appendChild(pagesDiv);
       
       booksDiv.appendChild(authorAndPagesDiv);
-
-      // for status and delete
-      let statusAndDeleteDiv = document.createElement('div');
-      statusAndDeleteDiv.className = 'status-and-delete';
-
-      let statusBtn = document.createElement('button');
-      statusBtn.classList.add('status');
-      statusBtn.textContent = book.status;
-      statusAndDeleteDiv.appendChild(statusBtn);
-
-      let deleteBtn = document.createElement('button');
-      deleteBtn.classList.add('delete');
-      deleteBtn.textContent = 'Delete';
-      statusAndDeleteDiv.appendChild(deleteBtn);
-      
-      booksDiv.appendChild(statusAndDeleteDiv);
-
       booksContainer.appendChild(booksDiv);
 
       deleteBtn.addEventListener('click', () => {
          removeBook(index);
       });
 
-      statusBtn.addEventListener('click', () => {
-         /* (book.status == 'Read') ? 'Not Read' : 'Read';
-         return statusBtn.textContent = book.status; */
-         if (book.status == 'Read') {
-            book.status = 'Not read'
-            statusBtn.textContent = book.status;
-            console.log(`Changed status of "${book.title}" to "${book.status}"`);
-         } else {
-            book.status = 'Read'
-            statusBtn.textContent = book.status
-            console.log(`Changed status of "${book.title}" to "${book.status}"`);
-         }
+      readStatus.addEventListener('click', () => {
+         toggleReadStatus(index);
       });
    });
 }
 
 function removeBook(index) {
    myLibrary.splice(index, 1);
+   displayBooks();
+}
+
+function toggleReadStatus(index) {
+   myLibrary[index].read = !myLibrary[index].read;
    displayBooks();
 }
 
@@ -126,18 +120,18 @@ inputForm.addEventListener("submit", (e) => {
    const inputTitle = document.getElementById('title');
    const inputAuthor = document.getElementById('author');
    const inputPages = document.getElementById('pages');
-   const inputStatus = document.getElementById('status');
+   const inputRead = document.getElementById('read');
 
    const title = inputTitle.value;
-   inputTitle.value = '';
+   // inputTitle.value = '';
    const author = inputAuthor.value;
-   inputAuthor.value = '';
+   // inputAuthor.value = '';
    const pages = inputPages.value;
-   inputPages.value = '';
-   const status = inputStatus.value;
-   inputStatus.value = '';
+   // inputPages.value = '';
+   const read = inputRead.checked;
+   // inputRead.value = '';
    
-   addBookToLibrary(title, author, pages, status);
+   addBookToLibrary(title, author, pages, read);
    displayBooks();
    inputForm.reset();
    dialog.close();
